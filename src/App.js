@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person'
+import Trial from './Trial/Trial'
 
 class App extends Component {
   render() {
@@ -11,7 +12,9 @@ class App extends Component {
         <p>This is really working</p>
 
         <Person />
-        
+        <hr/>
+        <Trial number= '2' />
+
       </div>
     );
   }
