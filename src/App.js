@@ -1,21 +1,38 @@
 import React, { Component } from 'react';
 import './App.css';
-import person from './Person/Person';
 import Person from './Person/Person'
 
 class App extends Component {
 
   state = {
     persons:[
-      {name:'Humphrey', age:23},
-      {name:'Alex', age:22},
-      {name:'Staphie', age:20}
+      {id:'fgas0',name:'Humphrey', age:23},
+      {id:'dfgd1',name:'Alex', age:22},
+      {id:'dfdf2',name:'Staphie', age:20}
     ],
     otherState:'some other state',
     showPersons: false,
   }
 
-  nameChangeHandler = (event) => {
+  nameChangeHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+    // const person = Object.assign({}, this.state.persons[personIndex]);
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
+    this.setState({ persons:persons });
+
+    
+
     this.setState( {
       persons:[
         {name: 'Humphrey', age:23},
@@ -25,16 +42,16 @@ class App extends Component {
     })
   }
 
-  togglePersonsHandler = (event) => {
-    const doesShow = this.state.showPersons;
-    this.setState({showPersons: !doesShow});
-  }
-
-  deletePersonHandler = (personIndex) => {
+ deletePersonHandler = ( personIndex ) => {
     // const persons = this.state.persons.slice();
     const persons = [...this.state.persons];
-    persons.splice(personIndex, 1);
-    this.setState({persons:persons})
+    persons.splice( personIndex, 1 );
+    this.setState( { persons: persons } );
+  }
+
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState( { showPersons: !doesShow } );
   }
 
   render() {
@@ -57,6 +74,8 @@ class App extends Component {
                click={this.deletePersonHandler}
                name={person.name}
                age={person.age}
+               key={person.id}
+               changed={(event) => this.nameChangeHandler(event, person.id)}
               />
             })
           }
