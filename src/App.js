@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import person from './Person/Person';
 import Person from './Person/Person'
 
 class App extends Component {
@@ -12,17 +13,6 @@ class App extends Component {
     ],
     otherState:'some other state',
     showPersons: false,
-  }
-
-  switchNameHandler = (newName) => {
-    // console.log('I was clicked')
-    this.setState( {
-      persons:[
-        {name: newName, age:23},
-        {name:'Aleqii', age:22},
-        {name:'stephie', age:20}
-      ]
-    })
   }
 
   nameChangeHandler = (event) => {
@@ -40,6 +30,12 @@ class App extends Component {
     this.setState({showPersons: !doesShow});
   }
 
+  deletePersonHandler = (personIndex) => {
+    // const persons = this.state.persons.slice();
+    const persons = [...this.state.persons];
+    persons.splice(personIndex, 1);
+    this.setState({persons:persons})
+  }
 
   render() {
     const style = {
@@ -56,28 +52,15 @@ class App extends Component {
      persons = (
         <div>
           {
-            this.state.persons.map(person => {
+            this.state.persons.map((person,index) => {
               return <Person 
+               click={this.deletePersonHandler}
                name={person.name}
                age={person.age}
               />
             })
           }
-        {/* <Person 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age}
-          />
-        <Person 
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age}
-            click={this.switchNameHandler.bind(this,'Hum')} 
-            changed={this.nameChangeHandler}
-            >
-              Hobbies: riding  
-        </Person>
-        <Person 
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}/> */}
+       
       </div> 
      )
   }
