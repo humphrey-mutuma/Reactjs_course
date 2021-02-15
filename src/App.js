@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person'
 import Validation from './ValidationComponent/ValidationComponent'
+import Char from './CharComponent/CharComponent'
 
 class App extends Component {
 
@@ -53,6 +54,13 @@ class App extends Component {
     })
   }
 
+  deleteCharHandler = (index) => {
+    const text = this.state.userInput.split('');
+    text.splice(index,1);
+    const updatedText = text.join('');
+    this.setState({userInput:updatedText});
+  };
+
   render() {
     const style = {
       backgroundColor:'white',
@@ -82,9 +90,17 @@ class App extends Component {
       </div> 
      )
   }
+    const charList = this.state.userInput.split('').map((ch,index) => {
+      return <Char
+       character={ch}
+        key={index}
+        clicked = {() => this.deleteCharHandler(index)}
+         />
+    })
 
 
     return (
+
       <div className="App">
         <h1>This is react boy!</h1>
         <p>This is really working</p>
@@ -102,6 +118,8 @@ class App extends Component {
           <p>{this.state.userInput}</p>
 
           <Validation inputLenth= {this.state.userInput.length} />
+
+          {charList}
       </div>
     );
   }
