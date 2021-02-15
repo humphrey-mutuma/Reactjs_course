@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person'
+import Validation from './ValidationComponent/ValidationComponent'
 
 class App extends Component {
 
@@ -12,6 +13,7 @@ class App extends Component {
     ],
     otherState:'some other state',
     showPersons: false,
+    userInput:''
   }
 
   nameChangeHandler = (event, id) => {
@@ -45,6 +47,12 @@ class App extends Component {
     this.setState( { showPersons: !doesShow } );
   }
 
+  inputChangedHandler = (event) => {
+    this.setState({
+      userInput: event.target.value
+    })
+  }
+
   render() {
     const style = {
       backgroundColor:'white',
@@ -74,6 +82,8 @@ class App extends Component {
       </div> 
      )
   }
+
+
     return (
       <div className="App">
         <h1>This is react boy!</h1>
@@ -83,6 +93,15 @@ class App extends Component {
           onClick={this.togglePersonsHandler}>Toggle Persons</button>
          
          {persons}
+          <hr/>
+         <input 
+              type="text"
+              onChange={this.inputChangedHandler}
+              value={this.state.userInput}
+          />
+          <p>{this.state.userInput}</p>
+
+          <Validation inputLenth= {this.state.userInput.length} />
       </div>
     );
   }
