@@ -4,19 +4,19 @@ import styled from 'styled-components'
 import './App.css';
 import Person from './Person/Person'
 
-const StyledButton = styled.button`
-     backgroundColor:${props => props.alt ? 'red' : 'green'};
-     white:white;
-     font:inherit;
-     border:1px solid blue;
-     padding:8px;
-     cursor:pointer;
+// const StyledButton = styled.button`
+//      backgroundColor:${props => props.alt ? 'red' : 'green'};
+//      color:white;
+//      font:inherit;
+//      border:1px solid blue;
+//      padding:8px;
+//      cursor:pointer;
 
-     &:hover {
-       backgroundColor:${props => props.alt ? 'salmon' : 'lightgreen'};
-       color:black;
-     }
-`;
+//      &:hover {
+//        backgroundColor:${props => props.alt ? 'salmon' : 'lightgreen'};
+//        color:black;
+//      }
+// `;
 
 class App extends Component {
 
