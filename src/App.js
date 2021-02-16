@@ -47,10 +47,11 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor:'white',
+      backgroundColor:'green',
+      white:'white',
       font:'inherit',
       border:'1px solid blue',
-      padding:'9px',
+      padding:'8px',
       cursor:'pointer'
     };
 
@@ -69,10 +70,12 @@ class App extends Component {
                changed={(event) => this.nameChangeHandler(event, person.id)}
               />
             })
-          }
-       
+
+          }       
       </div> 
-     )
+     );
+     style.backgroundColor = 'red'
+
   }
     return (
       <div className="App">
