@@ -12,7 +12,7 @@ const cockpit = props => {
     //   alert('Saved data to cloud!');
     // }, 1000);
     toggleBtnRef.current.click()
-    
+
     return () => {
         // clearTimeout(timer);
       console.log(' [Cockpit.js] cleanup work in useEffect');
@@ -51,6 +51,7 @@ const cockpit = props => {
        onClick={props.clicked}>
         Toggle Persons
       </button>
+      <button onClick={props.login}>Login in</button>
     </div>
   );
 };
